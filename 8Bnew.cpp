@@ -2,7 +2,7 @@
 using namespace std;
 
 
-int partition(string name[] ,int credit[],int s , int p , int e){
+int partition(string name[] ,int credit[],int s  , int e){
     int pivot = credit[s];
     int cnt = 0;
     for (int i = s+1; i <= e; i++)
@@ -31,8 +31,10 @@ int partition(string name[] ,int credit[],int s , int p , int e){
         }
         if (i<pivotIndex && j >pivotIndex)
         {
-            swap(credit[i++],credit[j--]);
-            swap(name[i++],name[j--]);
+            swap(credit[i],credit[j]);
+            swap(name[i],name[j]);
+            i++;
+            j++;
         }
         
     }
@@ -44,7 +46,7 @@ void quicksort(string name[],int credit[],int s , int e){
     {
         return;
     }
-    int p = partition(name ,credit,s,p,e);
+    int p = partition(name ,credit,s,e);
     quicksort(name ,credit,s,p-1);
     quicksort(name, credit,p+1,e);
 }
